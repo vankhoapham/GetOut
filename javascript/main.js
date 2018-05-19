@@ -53,7 +53,7 @@ function imageLoader(){
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, s_bed],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [s_table, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, s_table, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, l_rug, b_table, floor, floor, floor],
                 [cuboard, floor, floor, floor, floor, floor, floor, floor, floor, floor],
