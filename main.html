@@ -20,38 +20,54 @@
 <canvas id="gamearea" width="640" height="640"></canvas>
 <script>
     //variables for background
-
     var canvas = document.getElementById("gamearea");
     var context = canvas.getContext("2d");
-    const totalImages = 2;
+    const totalImages = 3;
     var loadImages = 0;
     var floor = new Image();
-    floor.src = "images/floor_game.jpg";
+    floor.src = "images/wood_floor.png";
     floor.onload = imageLoader;
     var dresser = new Image();
     dresser.src = "images/dresser.png";
     dresser.onload = imageLoader;
+    var s_table = new Image();
+    s_table.src = "images/small_table.png"
+    s_table.onload = imageLoader;
 
+    //function to monitor when all the images have been loaded and then draws the background
     function imageLoader(){
         console.log("I'm here");
         loadImages++;
         if(loadImages === totalImages){
+            var ground =
+                [[floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor]];
+
             var objects =
                 [[floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, dresser, floor, floor, floor, floor, floor, floor]];
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [s_table, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
+                    [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor]];
 
 
             //world map loop
             for(var column = 0; column <= 9; column++){
                 for(var row = 0; row <= 9; row++){
+                    context.drawImage(ground[row][column], column * 64, row * 64);
                     context.drawImage(objects[row][column], column * 64, row * 64);
                 }
             }
