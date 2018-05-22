@@ -33,7 +33,7 @@ l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
 
 var player = {
-x: 250,
+x: 251,
 y: 250,
 image: new Image()
 }
