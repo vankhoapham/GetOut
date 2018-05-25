@@ -35,10 +35,14 @@ l_rug.onload = imageLoader;
 var player = {
 x: 250,
 y: 250,
-image: new Image()
+image: new Image(),
+size: 32,
+direction: 0,
+animationframe: 0
 }
 player.image.src = "images/player.png";
-player.onload = imageLoader;
+
+
 
 //function to monitor when all the images have been loaded and then draws the background
 function imageLoader(){
@@ -90,28 +94,68 @@ function imageLoader(){
 				
                 if(e.keyCode === 37){
                     //left arrow
+					if(player.direction==1){
+						if(player.animationframe < 2){
+							player.animationframe += 1;
+						}else{
+							player.animationframe = 0;
+						}
+						
+					}else{
+						player.animationframe = 0;
+					}
 					if(player.x > 15)
 						player.x -= moveSpeed;
+					player.direction = 1;
                 }
                 if(e.keyCode === 39){
                     //right arrow
+                    if(player.direction==2){
+                        if(player.animationframe < 2){
+                            player.animationframe += 1;
+                        }else{
+                            player.animationframe = 0;}
+                    }
+                    else{
+                        player.animationframe = 0;
+                    }
 					if(player.x < 570)
 						player.x += moveSpeed;
+					player.direction = 2;
                 }
                 if(e.keyCode === 38){
                     //up arrow
+                    if(player.direction==3){
+                        if(player.animationframe < 2){
+                            player.animationframe += 1;
+                        }else{
+                            player.animationframe = 0;}
+                    }
+                    else{
+                        player.animationframe = 0;
+                    }
 					if(player.y > 15)
 						player.y -= moveSpeed;
+					player.direction = 3;
                 }
                 if(e.keyCode === 40){
                     //down arrow
+                    if(player.direction==0){
+                        if(player.animationframe < 2){
+                            player.animationframe += 1;
+                        }else{
+                            player.animationframe = 0;}
+                    }
+                    else{
+                        player.animationframe = 0;
+                    }
 					if(player.y < 570)
 						player.y += moveSpeed;
+					player.direction = 0;
                 }
 				displaySafeBackground();
-				context.drawImage(player.image,0,0,53,55, player.x, player.y, 53, 55);
+				context.drawImage(player.image,player.animationframe*player.size,player.direction*player.size,32,32, player.x, player.y, player.size, player.size);
 		}
-		//an array which draws the map
 		function displaySafeBackground(){
                 
 				for(var column = 0; column <= 9; column++){
@@ -121,7 +165,7 @@ function imageLoader(){
 					}
 				}
             }
-		context.drawImage(player.image,0,0,53,55, player.x, player.y, 53, 55);
+		context.drawImage(player.image,player.direction*32,0,player.size, player.size, player.x, player.y, player.size, player.size);
 		
 		
     }
