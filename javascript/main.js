@@ -33,13 +33,12 @@ l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
 
 var player = {
-x: 251,
+x: 250,
 y: 250,
 image: new Image()
 }
 player.image.src = "images/player.png";
-
-
+player.onload = imageLoader;
 
 //function to monitor when all the images have been loaded and then draws the background
 function imageLoader(){
@@ -112,6 +111,7 @@ function imageLoader(){
 				displaySafeBackground();
 				context.drawImage(player.image,0,0,53,55, player.x, player.y, 53, 55);
 		}
+		//an array which draws the map
 		function displaySafeBackground(){
                 
 				for(var column = 0; column <= 9; column++){
