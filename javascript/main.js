@@ -52,6 +52,16 @@ function displaySafeBackground(){
     }
 }
 
+function setPlayerAnimationFrame(){
+    if(player.animationframe < 2){
+        //goes to the next animation frame
+        player.animationframe += 1;
+    }else{
+        //goes to the first animation frame
+        player.animationframe = 0;
+    }
+}
+
 //e is an argument implanted by javascript whenever they are dealing with an event
 function movePlayer(e){
     //53 x 55 player
@@ -62,13 +72,7 @@ function movePlayer(e){
         //if player is facing left
         if(player.direction===1){
             //if player was already going to the left
-            if(player.animationframe < 2){
-                //goes to the next animation frame
-                player.animationframe += 1;
-            }else{
-                //goes to the first animation frame
-                player.animationframe = 0;
-            }
+            setPlayerAnimationFrame();
 
         }else{
             //set player to the first animation frame going to the left
@@ -81,10 +85,7 @@ function movePlayer(e){
     if(e.keyCode === 39){
         //right arrow
         if(player.direction==2){
-            if(player.animationframe < 2){
-                player.animationframe += 1;
-            }else{
-                player.animationframe = 0;}
+            setPlayerAnimationFrame();
         }
         else{
             player.animationframe = 0;
@@ -96,10 +97,7 @@ function movePlayer(e){
     if(e.keyCode === 38){
         //up arrow
         if(player.direction==3){
-            if(player.animationframe < 2){
-                player.animationframe += 1;
-            }else{
-                player.animationframe = 0;}
+            setPlayerAnimationFrame();
         }
         else{
             player.animationframe = 0;
@@ -111,10 +109,7 @@ function movePlayer(e){
     if(e.keyCode === 40){
         //down arrow
         if(player.direction==0){
-            if(player.animationframe < 2){
-                player.animationframe += 1;
-            }else{
-                player.animationframe = 0;}
+            setPlayerAnimationFrame();
         }
         else{
             player.animationframe = 0;
