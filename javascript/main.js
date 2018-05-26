@@ -32,6 +32,7 @@ var l_rug = new Image();
 l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
 
+//intializes the player
 var player = {
     x: 250,
     y: 250,
@@ -65,7 +66,7 @@ function setPlayerAnimationFrame(){
 //e is an argument implanted by javascript whenever they are dealing with an event
 function movePlayer(e){
     //53 x 55 player
-    var moveSpeed = 13;
+    var moveSpeed = 7;
 
     if(e.keyCode === 37){
         //left arrow
@@ -119,7 +120,15 @@ function movePlayer(e){
         player.direction = 0;
     }
     displaySafeBackground();
-    context.drawImage(player.image,player.animationframe*player.size,player.direction*player.size,32,32, player.x, player.y, player.size, player.size);
+    context.drawImage(player.image,//specifies the image to use
+        player.animationframe*player.size,//the x coordinate where to start clipping
+        player.direction*player.size,//the y coordinate where to start clipping
+        32,//the width of the clipped image
+        32,//the height of the clipped image
+        player.x,//the x coordinate of where to place the image on the canvas
+        player.y,//the y coordinate of where to place the image on the canvas
+        player.size,//the width of the image to use
+        player.size);//the height of the image to use
 }
 
 var ground = {};
