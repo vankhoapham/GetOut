@@ -5,6 +5,7 @@ canvas1.height = 640;
 
 bgImg = new Image();
 bgImg.src = "images/Dungeon_A1.png";
+const SIZE = 64;
 var mapX=0; mapY=33;
 var map = [
     [0],
