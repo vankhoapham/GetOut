@@ -32,14 +32,107 @@ var l_rug = new Image();
 l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
 
+//intializes the player
 var player = {
-x: 250,
-y: 250,
-image: new Image()
+    x: 250,
+    y: 250,
+    image: new Image(),
+    size: 32,
+    direction: 0,
+    animationframe: 0
 }
 player.image.src = "images/player.png";
 
+function displaySafeBackground(){
 
+    for(var column = 0; column <= 9; column++){
+        for(var row = 0; row <= 9; row++){
+            context.drawImage(ground[row][column], column * 64, row * 64);
+            context.drawImage(objects[row][column], column * 64, row * 64);
+        }
+    }
+}
+
+function setPlayerAnimationFrame(){
+    if(player.animationframe < 2){
+        //goes to the next animation frame
+        player.animationframe += 1;
+    }else{
+        //goes to the first animation frame
+        player.animationframe = 0;
+    }
+}
+
+//e is an argument implanted by javascript whenever they are dealing with an event
+function movePlayer(e){
+    //53 x 55 player
+    var moveSpeed = 7;
+
+    if(e.keyCode === 37){
+        //left arrow
+        //if player is facing left
+        if(player.direction===1){
+            //if player was already going to the left
+            setPlayerAnimationFrame();
+
+        }else{
+            //set player to the first animation frame going to the left
+            player.animationframe = 0;
+        }
+        if(player.x > 15)
+            player.x -= moveSpeed;
+        player.direction = 1;
+    }
+    if(e.keyCode === 39){
+        //right arrow
+        if(player.direction==2){
+            setPlayerAnimationFrame();
+        }
+        else{
+            player.animationframe = 0;
+        }
+        if(player.x < 570)
+            player.x += moveSpeed;
+        player.direction = 2;
+    }
+    if(e.keyCode === 38){
+        //up arrow
+        if(player.direction==3){
+            setPlayerAnimationFrame();
+        }
+        else{
+            player.animationframe = 0;
+        }
+        if(player.y > 15)
+            player.y -= moveSpeed;
+        player.direction = 3;
+    }
+    if(e.keyCode === 40){
+        //down arrow
+        if(player.direction==0){
+            setPlayerAnimationFrame();
+        }
+        else{
+            player.animationframe = 0;
+        }
+        if(player.y < 570)
+            player.y += moveSpeed;
+        player.direction = 0;
+    }
+    displaySafeBackground();
+    context.drawImage(player.image,//specifies the image to use
+        player.animationframe*player.size,//the x coordinate where to start clipping
+        player.direction*player.size,//the y coordinate where to start clipping
+        32,//the width of the clipped image
+        32,//the height of the clipped image
+        player.x,//the x coordinate of where to place the image on the canvas
+        player.y,//the y coordinate of where to place the image on the canvas
+        player.size,//the width of the image to use
+        player.size);//the height of the image to use
+}
+
+var ground = {};
+var objects = {};
 
 //function to monitor when all the images have been loaded and then draws the background
 function imageLoader(){
@@ -48,7 +141,7 @@ function imageLoader(){
 	
 	//once all images loaded, draw images.
     if(loadImages === totalImages){
-        var ground =
+        ground =
             [[floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
@@ -60,7 +153,7 @@ function imageLoader(){
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor]];
 		//object placement
-        var objects =
+        objects =
             [[floor, floor, floor, dresser, floor, floor, s_window, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
                 [floor, floor, floor, floor, floor, floor, floor, floor, floor, s_bed],
@@ -77,51 +170,11 @@ function imageLoader(){
 		//tile size 64 x 64
 		displaySafeBackground();
 
-		
-		/*
-		fluid player movement:
-		disable movement key during animation (100ms approx), change between 3 images
-		also: change direction for player image
-		*/
-		
+
+		//this listens for a key press only after all images have been loaded
 		window.addEventListener('keydown', movePlayer, false);
-		function movePlayer(e){
-		//53 x 55 player		
-				var moveSpeed = 13;
-				
-                if(e.keyCode === 37){
-                    //left arrow
-					if(player.x > 15)
-						player.x -= moveSpeed;
-                }
-                if(e.keyCode === 39){
-                    //right arrow
-					if(player.x < 570)
-						player.x += moveSpeed;
-                }
-                if(e.keyCode === 38){
-                    //up arrow
-					if(player.y > 15)
-						player.y -= moveSpeed;
-                }
-                if(e.keyCode === 40){
-                    //down arrow
-					if(player.y < 570)
-						player.y += moveSpeed;
-                }
-				displaySafeBackground();
-				context.drawImage(player.image,0,0,53,55, player.x, player.y, 53, 55);
-		}
-		function displaySafeBackground(){
-                
-				for(var column = 0; column <= 9; column++){
-					for(var row = 0; row <= 9; row++){
-					context.drawImage(ground[row][column], column * 64, row * 64);
-					context.drawImage(objects[row][column], column * 64, row * 64);
-					}
-				}
-            }
-		context.drawImage(player.image,0,0,53,55, player.x, player.y, 53, 55);
+
+		context.drawImage(player.image,0,0,player.size, player.size, player.x, player.y, player.size, player.size);
 		
 		
     }
