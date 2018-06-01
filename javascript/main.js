@@ -1,7 +1,7 @@
 //variables for background
 var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
-const totalImages = 9;
+const totalImages = 10;
 var loadImages = 0;
 
 var floor = new Image();
@@ -31,6 +31,10 @@ s_bed.onload = imageLoader;
 var l_rug = new Image();
 l_rug.src = "images/rug.png";
 l_rug.onload = imageLoader;
+var wall = new Image();
+wall.src = "images/wall.png";
+wall.onload = imageLoader;
+
 
 //intializes the player
 var player = {
@@ -142,28 +146,28 @@ function imageLoader(){
 	//once all images loaded, draw images.
     if(loadImages === totalImages){
         ground =
-            [[floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor]];
+            [[wall, wall, wall, wall, wall, wall, wall, wall, wall, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall]];
 		//object placement
         objects =
-            [[floor, floor, floor, dresser, floor, floor, s_window, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, s_bed],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, s_table, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, l_rug, b_table, floor, floor, floor],
-                [cuboard, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, floor, floor, floor, floor, floor],
-                [floor, floor, floor, floor, floor, s_shelf, floor, floor, floor, floor]];
+            [[wall, wall, wall, wall, wall, wall, s_window, wall, wall, wall],
+                [wall, floor, floor, dresser, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, s_bed, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, s_table, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, l_rug, b_table, floor, floor, wall],
+                [wall, cuboard, floor, floor, floor, floor, floor, floor, floor, wall],
+                [wall, floor, floor, floor, floor, s_shelf, floor, floor, floor, wall],
+                [wall, wall, wall, wall, wall, wall, wall, wall, wall, wall]];
 
 
         //world map loop
