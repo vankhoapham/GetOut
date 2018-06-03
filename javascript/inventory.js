@@ -52,9 +52,10 @@ function pickUp(e) {
     {
         if ( player.x == 383 && player.y == 355 || player.x == 362 && player.y==376)
         {
-            item.push("苹果");
+            item.push("item1");
             ctx.drawImage(itemImg,
                 8,10,32,32);
+            alert("You have receive demo item")
         }
 
     }console.log(item);
