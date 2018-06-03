@@ -45,18 +45,24 @@ const item = [];
 itemImg = new Image();
 itemImg.src = "images/item/1.png";
 
-
+var i = 0;
 function pickUp(e) {
 
     if (e.keyCode == 74)// key J
     {
-        if ( player.x == 383 && player.y == 355 || player.x == 362 && player.y==376)
+        if ( i==0 && player.x == 383 && player.y == 355 ||  i==0 && player.x == 362 && player.y==376)
         {
             item.push("item1");
             ctx.drawImage(itemImg,
                 8,10,32,32);
-            alert("You have receive demo item")
+            alert("You have receive demo item");
+             i=1;
         }
+        else if (i=1)
+        {
+            alert("There is nothing on the table");
+        }
+
 
     }console.log(item);
     console.log(player.x,player.y)
