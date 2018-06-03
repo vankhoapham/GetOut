@@ -6,7 +6,7 @@ canvas1.height = 640;
 bgImg = new Image();
 bgImg.src = "images/box.png";
 const SIZE = 64;
-var mapX=0; mapY=0;
+var IX=0; IY=0;
 var map = [
     [0],
     [0],
@@ -24,7 +24,7 @@ var map = [
 bgImg.onload=function(){
     drawInventory();
 };
-window.addEventListener('keydown', pickUp, false);
+
 
 
 function drawInventory(){
@@ -33,7 +33,7 @@ function drawInventory(){
         for (var col = 0; col < map[row].length;col++){
             X = col * SIZE;
             ctx.drawImage(bgImg,
-                mapX,mapY,SIZE,SIZE,
+                IX,IY,SIZE,SIZE,
                 X, Y, SIZE, SIZE);
         }
     }
@@ -41,18 +41,24 @@ function drawInventory(){
 
 }
 
-var item = [[0]];
+const item = [];
 itemImg = new Image();
 itemImg.src = "images/item/1.png";
 
-function pickUp(event) {
 
-    if (event.keyCode == 74)// key J
+function pickUp(e) {
+
+    if (e.keyCode == 74)// key J
     {
-        item.push(1);
+        if ( player.x == 383 && player.y == 355 || player.x == 362 && player.y==376)
+        {
+            item.push("苹果");
+            ctx.drawImage(itemImg,
+                8,10,32,32);
+        }
+
     }console.log(item);
+    console.log(player.x,player.y)
 }
 
-itemImg.onload=function(){
-    drawItem();
-};
+window.addEventListener('keydown', pickUp, false);
