@@ -45,26 +45,33 @@ const item = [];
 itemImg = new Image();
 itemImg.src = "images/item/1.png";
 
-var i = 0;
+var demo1 = 0;
 function pickUp(e) {
 
     if (e.keyCode == 74)// key J
     {
-        if ( i==0 && player.x == 383 && player.y == 355 ||  i==0 && player.x == 362 && player.y==376)
+        if (  player.x == 383 && player.y == 355 || player.x == 362 && player.y==376)
         {
-            item.push("item1");
-            ctx.drawImage(itemImg,
-                8,10,32,32);
-            alert("You have receive demo item");
-             i=1;
-        }
-        else if (i=1)
-        {
-            alert("There is nothing on the table");
+
+            switch(demo1)
+            {
+                case 0:
+                    alert("You have receive demo item");
+                    item.push("item1");
+                    ctx.drawImage(itemImg,
+                        8,10,32,32);
+                    demo1++;
+                case 1:
+                    alert("There is nothing on the table")
+                    demo1=1;
+            }
+           
+
         }
 
 
     }console.log(item);
+    console.log(demo1);
     console.log(player.x,player.y)
 }
 
