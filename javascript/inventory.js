@@ -20,19 +20,14 @@ var map = [ //blank inventory
     [0],
 
 ];
-//xian should comment here
+
 bgImg.onload=function(){
     drawInventory();
 };
 
 
-<<<<<<< HEAD
-//function for inventory system
-function drawInventory(){
-=======
 
 function drawInventory(){ // draw the inventory
->>>>>>> 1f60ddaf58476d2bf35ca0f08b944059974d2ffa
     for(var row = 0; row < map.length;row++){
         Y = row * SIZE;
         for (var col = 0; col < map[row].length;col++){
