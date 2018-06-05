@@ -67,6 +67,7 @@ function setPlayerAnimationFrame(){
     }
 }
 
+
 //e is an argument implanted by javascript whenever they are dealing with an event
 function movePlayer(e){
     //53 x 55 player

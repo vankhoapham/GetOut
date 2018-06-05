@@ -7,7 +7,7 @@ bgImg = new Image();
 bgImg.src = "images/box.png";
 const SIZE = 64;
 var IX=0; IY=0;
-var map = [
+var map = [ //blank inventory
     [0],
     [0],
     [0],
@@ -27,7 +27,7 @@ bgImg.onload=function(){
 
 
 
-function drawInventory(){
+function drawInventory(){ // draw the inventory
     for(var row = 0; row < map.length;row++){
         Y = row * SIZE;
         for (var col = 0; col < map[row].length;col++){
@@ -41,6 +41,7 @@ function drawInventory(){
 
 }
 
+//push item in array
 const item = [];
 itemImg = new Image();
 itemImg.src = "images/item/1.png";
@@ -48,9 +49,10 @@ itemImg.src = "images/item/1.png";
 var demo1 = 0;
 function pickUp(e) {
 
-    if (e.keyCode == 74)// key J
+    if (e.keyCode == 74)// press J to pick up
     {
-        if (  player.x == 383 && player.y == 355 || player.x == 362 && player.y==376)
+        if (  383<= player.x <= 418 && player.y == 355 && player.direction ==0
+          || 376<=player.y<=404 && player.x == 362 && player.direction == 2) //the location where the demo item is hidden
         {
 
             switch(demo1)
@@ -73,6 +75,7 @@ function pickUp(e) {
     }console.log(item);
     console.log(demo1);
     console.log(player.x,player.y)
+    console.log(player.direction);
 }
 
 window.addEventListener('keydown', pickUp, false);
