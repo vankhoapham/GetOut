@@ -20,13 +20,13 @@ var map = [
     [0],
 
 ];
-
+//xian should comment here
 bgImg.onload=function(){
     drawInventory();
 };
 
 
-
+//function for inventory system
 function drawInventory(){
     for(var row = 0; row < map.length;row++){
         Y = row * SIZE;
