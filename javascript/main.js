@@ -3,6 +3,7 @@ var canvas = document.getElementById("gamearea");
 var context = canvas.getContext("2d");
 const totalImages = 9;
 var loadImages = 0;
+//edit
 
 var floor = new Image();
 floor.src = "images/wood_floor.png";
